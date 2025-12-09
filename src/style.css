@@ -17,16 +17,19 @@ body {
 }
 
 /* Smooth transitions */
-a, button {
+a,
+button {
   transition: all 0.3s ease;
 }
 
 /* Form inputs styling */
-input, textarea {
+input,
+textarea {
   font-size: 16px; /* Prevent zoom on input focus on mobile */
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
