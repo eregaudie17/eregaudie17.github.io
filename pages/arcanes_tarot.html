@@ -64,7 +64,13 @@
               <div class="relative flex flex-col w-fit bg-midnight-violet py-7 px-12 rounded-lg items-center">
               <div class="overflow-hidden max-w-96 rounded-lg">
                 <div class="carousel flex transition-transform duration-300" id="carousel">
-                <!-- Images will be loaded here by JavaScript -->
+                <img src="../public/images/cartes_tarot/le_diable.png" alt="Carte 1" class="w-full object-cover flex-shrink-0" />
+                <img src="../public/images/cartes_tarot/la_justice.png" alt="Carte 2" class="w-full object-cover flex-shrink-0" />
+                <img src="../public/images/cartes_tarot/la_lune.png" alt="Carte 3" class="w-full object-cover flex-shrink-0" />
+                <img src="../public/images/cartes_tarot/la_mort.png" alt="Carte 4" class="w-full object-cover flex-shrink-0" />
+                <img src="../public/images/cartes_tarot/le_jugement.png" alt="Carte 5" class="w-full object-cover flex-shrink-0" />
+                <img src="../public/images/cartes_tarot/la_maison_de_dieu.png" alt="Carte 6" class="w-full object-cover flex-shrink-0" />
+                <img src="../public/images/cartes_tarot/dos.png" alt="Carte 7" class="w-full object-cover flex-shrink-0" />
                 </div>
               </div>
               <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-midnight-violet text-linen p-2 text-3xl cursor-pointer" onclick="prevSlide()">❮</button>
@@ -92,17 +98,6 @@
               '../public/images/cartes_tarot/dos.png',
             ];
 
-            function loadCarousel() {
-              const carousel = document.getElementById('carousel');
-              images.forEach((img, index) => {
-              const imgEl = document.createElement('img');
-              imgEl.src = img;
-              imgEl.alt = `Carte ${index + 1}`;
-              imgEl.className = 'w-full  object-cover flex-shrink-0';
-              carousel.appendChild(imgEl);
-              });
-            }
-
             function updateCarousel() {
               const carousel = document.getElementById('carousel');
               carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -117,8 +112,6 @@
               currentIndex = (currentIndex - 1 + images.length) % images.length;
               updateCarousel();
             }
-
-            loadCarousel();
             </script>
   </body>
 </html>
