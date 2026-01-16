@@ -42,7 +42,7 @@
               <span class="bg-midnight-violet text-linen px-4 py-2 rounded-lg">Flat Design</span>
             </div>
           </div>
-
+          <h3 class="text-2xl font-bold mb-4">Déroulé</h3>
           <p class="text-lg leading-relaxed mb-8">
             Ce projet était l'un des tout permiers réalisés avec Illustrator et Photoshop. L'objectif était de
             créer un jeu d'arcanes de tarot, donc 22 cartes, sous chacun des deux logiciels et ce en une semaine. 
@@ -57,25 +57,40 @@
             Mike Karolos</a> pour Illustrator et <a href="https://www.johngalldesign.com" target="_blank" rel="noopener noreferrer" class="font-bold text-indigo-velvet">John Gall</a> 
             pour Photoshop.
           </p>
+
+          <p class="text-lg leading-relaxed mb-8">
+            Une fois ces artistes choisis, j'ai commencé par tester leurs styles en créant des illustrations simples afin de me les approprier. Puis une fois 
+            familiarisé avec leurs techniques, j'ai commencé la création des cartes. J'ai d'abord fait une liste des 22 arcanes majeurs du tarot, puis j'ai sélectionné 
+            celles qui m'inspiraient le plus pour débuter la création. J'ai alterné entre les deux logiciels pour chaque carte, en veillant à respecter le style de chaque artiste.
+          </p>
+
+          <p class="text-lg leading-relaxed mb-16">
+            Pour les cartes sous Illustrator, j'ai cherché des références qui correspondent au message ou au visuel de chaque arcane originelle, puis j'ai fais des déourages que j'ai 
+            découpé en formes plus brutes afin de donner l'aspect vitrail caractéristique de style de Mike Karolos.
+            Voici donc ci-dessous mes cartes créées sous Illustrator.
+          </p>
           
           <div class="mb-8">
-            <h3 class="text-2xl font-bold mb-4">Galerie</h3>
+            <h3 class="text-2xl font-bold mb-4">Galerie Illustrator</h3>
             <div class="flex flex-col w-full items-center">
               <div class="relative flex flex-col w-fit bg-midnight-violet py-7 px-12 rounded-lg items-center">
-              <div class="overflow-hidden max-w-96 rounded-lg">
-                <div class="carousel flex transition-transform duration-300" id="carousel">
-                <img src="../public/images/cartes_tarot/le_diable.png" alt="Carte 1" class="w-full object-cover flex-shrink-0" />
-                <img src="../public/images/cartes_tarot/la_justice.png" alt="Carte 2" class="w-full object-cover flex-shrink-0" />
-                <img src="../public/images/cartes_tarot/la_lune.png" alt="Carte 3" class="w-full object-cover flex-shrink-0" />
-                <img src="../public/images/cartes_tarot/la_mort.png" alt="Carte 4" class="w-full object-cover flex-shrink-0" />
-                <img src="../public/images/cartes_tarot/le_jugement.png" alt="Carte 5" class="w-full object-cover flex-shrink-0" />
-                <img src="../public/images/cartes_tarot/la_maison_de_dieu.png" alt="Carte 6" class="w-full object-cover flex-shrink-0" />
-                <img src="../public/images/cartes_tarot/dos.png" alt="Carte 7" class="w-full object-cover flex-shrink-0" />
+                <div class="overflow-hidden max-w-96 rounded-lg">
+                  <div class="carousel flex transition-transform duration-300" id="carousel-illustrator">
+                    <img src="../public/images/cartes_tarot/le_diable.png" alt="Carte 1" class="w-full object-cover shrink-0" />
+                    <img src="../public/images/cartes_tarot/la_justice.png" alt="Carte 2" class="w-full object-cover shrink-0" />
+                    <img src="../public/images/cartes_tarot/la_lune.png" alt="Carte 3" class="w-full object-cover shrink-0" />
+                    <img src="../public/images/cartes_tarot/la_mort.png" alt="Carte 4" class="w-full object-cover shrink-0" />
+                    <img src="../public/images/cartes_tarot/le_jugement.png" alt="Carte 5" class="w-full object-cover shrink-0" />
+                    <img src="../public/images/cartes_tarot/la_maison_de_dieu.png" alt="Carte 6" class="w-full object-cover shrink-0" />
+                    <img src="../public/images/cartes_tarot/dos.png" alt="Carte 7" class="w-full object-cover shrink-0" />
+                  </div>
                 </div>
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-midnight-violet text-linen p-2 text-3xl cursor-pointer" onclick="prevSlide()">❮</button>
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-midnight-violet text-linen p-2 text-3xl cursor-pointer" onclick="nextSlide()">❯</button>
               </div>
-              <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-midnight-violet text-linen p-2 text-3xl cursor-pointer" onclick="prevSlide()">❮</button>
-              <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-midnight-violet text-linen p-2 text-3xl cursor-pointer" onclick="nextSlide()">❯</button>
-            </div>
+              <div class="flex flex-col items-center justify-start w-2/3 mt-5" id="description-illustrator">
+                <!-- Description de la carte actuelle -->
+              </div>
             </div>
           </div>
         </div>
@@ -88,7 +103,7 @@
 
             <script>
             let currentIndex = 0;
-            const images = [
+            const imagesIllustrator = [
               '../public/images/cartes_tarot/le_diable.png',
               '../public/images/cartes_tarot/la_justice.png',
               '../public/images/cartes_tarot/la_lune.png',
@@ -98,20 +113,59 @@
               '../public/images/cartes_tarot/dos.png',
             ];
 
-            function updateCarousel() {
-              const carousel = document.getElementById('carousel');
-              carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            const descriptionsIllustrator =[
+              { titre : "Le Diable",
+                Inspiration : "Baphomet",
+                Description : "La carte d'origine du diable n'a rien à voir avec l'image du bouc de Baphomet, bien qu'elle représente un créature humanoïde avec des attributs d'animaux. j'ai choisi cette représentation pour donner un aspect plus visuel et direct à la carte."
+              },
+              { titre : "La Justice",
+                Inspiration : "La balance de la Justice",
+                Description : "La carte d'origine de la justice représente une figure assise tenant une épée et une balance. J'ai choisi de représenter la Justice par la seule balance qui je trouve est plus efficace visuellement pour représenter ce concept."
+              },
+              { titre : "La Lune",
+                Inspiration : "Carte d'origine",
+                Description : "La carte d'origine de la lune montre la Lune qui surplombe un lac dans lequel se trouve une écrevisse. J'ai choisi de garder la référence au crustacé en représentant une crevette qui complette le croissant de lune. On reconnait directement la lune et pour les connaisseurs la référence au jeu de base."
+              },
+              { titre : "La Mort",
+                Inspiration : "La Faucheuse, Assassin's Creed",
+                Description : "La carte d'origine de la mort ou 'Arcane Sans Nom' montre déjà un figure semblable à la faucheuse. J'ai choisi de détourner cette image en m'inspirant d'une représentation connue de la mort dans le monde du jeu vidéo : l'assassin de la série Assassin's Creed, dont le crâne sur ma carte porte la capuche emblématique."
+              },
+              { titre : "Le Jugement",
+                Inspiration : "Séraphin",
+                Description : "La carte d'origine du jugement montre un ange qui en déscendant du ciel souffle dans une trompette, signifiant le jugement dernier. J'ai choisi de garder ce principe de jugement dernier en représentant un séraphin, ange le plus puissant"
+              },
+              { titre : "La Maison de Dieu",
+                Inspiration : "Carte d'origine",
+                Description : "La carte d'origine de la maison de dieu montre une tour frappée par la foudre. J'ai choisi de garder la tour mais de la représenter de manière plus grandiose en la faisant monter jusqu'aux cieux dans le but de représenter au mieux la notion de divin."
+              },
+              { titre : "Dos de Carte",
+                Inspiration : "Œil de divination",
+                Description : "J'ai choisi de représenter un œil au centre d'un motif géométrique complexe pour le dos des cartes. L'œil symbolise la vision et la connaissance, ce qui est approprié pour un jeu de tarot utilisé pour la divination."
+              }
+            ]
+
+            function updateCarouselIllustrator() {
+              const carousel_illustrator = document.getElementById('carousel-illustrator');
+              const description_illustrator = document.getElementById('description-illustrator');
+              const currentIllustratorCard = descriptionsIllustrator[currentIndex];
+              carousel_illustrator.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+              description_illustrator.innerHTML = `
+                <h4 class="text-xl font-bold text-center mt-4">${currentIllustratorCard.titre}</h4>
+                <p class="text-md"><strong>Inspiration :</strong> ${currentIllustratorCard.Inspiration}</p>
+                <p class="text-md mt-2 text-center">${currentIllustratorCard.Description}</p>`;
             }
 
             function nextSlide() {
-              currentIndex = (currentIndex + 1) % images.length;
-              updateCarousel();
+              currentIndex = (currentIndex + 1) % imagesIllustrator.length;
+              updateCarouselIllustrator();
             }
 
             function prevSlide() {
-              currentIndex = (currentIndex - 1 + images.length) % images.length;
-              updateCarousel();
+              currentIndex = (currentIndex - 1 + imagesIllustrator.length) % imagesIllustrator.length;
+              updateCarouselIllustrator();
             }
+            updateCarouselIllustrator();
             </script>
   </body>
 </html>
