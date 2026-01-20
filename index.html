@@ -92,7 +92,7 @@
         </h3>
         <a
           href="#projects"
-          class="flex flex-col text-center justify-center bg-soft-periwinkle text-white px-6 sm:px-8 py-2 sm:py-3 rounded-lg hover:bg-midnight-violet transition"
+          class="flex flex-col text-center justify-center bg-soft-periwinkle text-bright-snow px-6 sm:px-8 py-2 sm:py-3 rounded-lg hover:bg-midnight-violet transition"
           >Voir mes projets</a
         >
       </section>
@@ -205,9 +205,18 @@
 
       <section id="projects" class="max-w-6xl mx-auto px-4 py-12 sm:py-20">
         <h2 class="text-2xl sm:text-3xl font-bold mb-6">Projets</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="mb-6 flex flex-wrap gap-2">
+          <button class="filter-btn active px-4 py-2 rounded-lg bg-soft-periwinkle text-bright-snow hover:bg-indigo-velvet transition" data-filter="all">Tous</button>
+          <button class="filter-btn px-4 py-2 rounded-lg bg-soft-periwinkle text-bright-snow hover:bg-indigo-velvet transition" data-filter="illustrator">Illustrator</button>
+          <button class="filter-btn px-4 py-2 rounded-lg bg-soft-periwinkle text-bright-snow hover:bg-indigo-velvet transition" data-filter="photoshop">Photoshop</button>
+          <button class="filter-btn px-4 py-2 rounded-lg bg-soft-periwinkle text-bright-snow hover:bg-indigo-velvet transition" data-filter="aftereffects">After Effects</button>
+          <button class="filter-btn px-4 py-2 rounded-lg bg-soft-periwinkle text-bright-snow hover:bg-indigo-velvet transition" data-filter="premierepro">Premiere Pro</button>
+          <button class="filter-btn px-4 py-2 rounded-lg bg-soft-periwinkle text-bright-snow hover:bg-indigo-velvet transition" data-filter="figma">Figma</button>
+        </div>
 
-          <a href="./pages/arcanes_tarot.html" class="flex flex-col bg-indigo-velvet rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-5 transition">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+
+          <a href="./pages/arcanes_tarot.html" class="project-card flex flex-col bg-indigo-velvet rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-5 transition illustrator photoshop">
             <img src="./public/images/Covers/tarot.png" alt="Projet" class="w-full max-h-48 object-cover" />
             <div class="p-4">
               <h3 class="text-lg font-semibold mb-2">Arcanes de Tarot</h3>
@@ -215,7 +224,7 @@
             </div>
           </a>
 
-          <a href="./pages/carte_touristique.html" class="flex flex-col bg-indigo-velvet rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-5 transition">
+          <a href="./pages/carte_touristique.html" class="project-card flex flex-col bg-indigo-velvet rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-5 transition illustrator aftereffects premierepro">
             <img src="./public/images/Covers/motion_design.png" alt="Projet" class="w-full max-h-48 object-cover" />
             <div class="p-4">
               <h3 class="text-lg font-semibold mb-2">Carte lieu touristique</h3>
@@ -223,7 +232,7 @@
             </div>
           </a>
 
-          <a href="./pages/bal_app.html" class="flex flex-col bg-indigo-velvet rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-5 transition">
+          <a href="./pages/bal_app.html" class="project-card flex flex-col bg-indigo-velvet rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-5 transition figma aftereffects premierepro trello">
             <img src="./public/images/Covers/BAL_App.png" alt="Projet" class="w-full max-h-48 object-cover" />
             <div class="p-4">
               <h3 class="text-lg font-semibold mb-2">Application Musée BAL</h3>
@@ -279,7 +288,7 @@
       </section>
     </main>
 
-    <footer class="bg-dark text-white py-8 text-center">
+    <footer class="bg-dark text-bright-snow py-8 text-center">
       <p>&copy; 2025 Emmanuel Regaudie. Tous droits réservés.</p>
     </footer>
 
@@ -313,6 +322,27 @@
         });
       });
 
+      // Project filtering
+      const filterBtns = document.querySelectorAll(".filter-btn");
+          const projectCards = document.querySelectorAll(".project-card");
+
+          filterBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+              filterBtns.forEach((b) => b.classList.remove("active"));
+              btn.classList.add("active");
+
+              const filter = btn.getAttribute("data-filter");
+
+              projectCards.forEach((card) => {
+                if (filter === "all" || card.classList.contains(filter)) {
+                  card.style.display = "flex";
+                } else {
+                  card.style.display = "none";
+                }
+              });
+            });
+          });
+
       // Download CV functionality
       const downloadCVBtn = document.getElementById("download-cv");
       if (downloadCVBtn) {
@@ -326,6 +356,28 @@
           document.body.removeChild(link);
         });
       }
+
+      // Scroll to top button
+      const scrollTopBtn = document.createElement("button");
+      scrollTopBtn.innerHTML = "↑";
+      scrollTopBtn.id = "scroll-top-btn";
+      scrollTopBtn.className = "fixed text-2xl bottom-8 right-8 bg-soft-periwinkle text-white w-12 h-12 rounded-full shadow-lg hover:bg-indigo-velvet transition opacity-0 invisible";
+      scrollTopBtn.style.transition = "opacity 0.3s, visibility 0.3s";
+      document.body.appendChild(scrollTopBtn);
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          scrollTopBtn.classList.remove("opacity-0", "invisible");
+          scrollTopBtn.classList.add("opacity-100");
+        } else {
+          scrollTopBtn.classList.add("opacity-0", "invisible");
+          scrollTopBtn.classList.remove("opacity-100");
+        }
+      });
+
+      scrollTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     </script>
   </body>
 </html>
